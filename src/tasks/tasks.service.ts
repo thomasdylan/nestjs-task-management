@@ -12,7 +12,7 @@ export class TasksService {
 
   createTask(title: string, description: string): Task {
     const task: Task = {
-      id: uuid(),
+      id: uuid.v1(),
       title,
       description,
       status: TaskStatus.OPEN,
