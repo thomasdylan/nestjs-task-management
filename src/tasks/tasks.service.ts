@@ -53,14 +53,10 @@ export class TasksService {
     }
   }
 
-
-  // deleteTask(id: string): void {
-  //   const found = this.getTaskById(id);
-  //   this.tasks = this.tasks.filter(task => task.id !== found.id);
-  // }
-  // updateTaskStatus(id: string, status: TaskStatus): Task {
-  //   const task = this.getTaskById(id);
-  //   task.status = status;
-  //   return task;
-  // }
+  async updateTaskStatus(id: number, status: TaskStatus): Promise<Task> {
+    const task = await this.getTaskById(id);
+    task.status = status;
+    task.save();
+    return task;
+  }
 }
