@@ -14,23 +14,11 @@ export class TasksService {
     @InjectRepository(TaskRepository)
     private TaskRepository: TaskRepository,
   ) {}
-  // getAllTask(): Task[] {
-  //   return this.tasks;
-  // }
-  // getTasksWithFilters(filterDto: GetTasksFilterDto): Task[] {
-  //   const { status, search } = filterDto;
-  //   let tasks = this.getAllTask();
-  //   if (status) {
-  //     tasks = tasks.filter(task => task.status === status);
-  //   }
-  //   if (search) {
-  //     tasks = tasks.filter(
-  //       task =>
-  //         task.title.includes(search) || task.description.includes(search),
-  //     );
-  //   }
-  //   return tasks;
-  // }
+
+  getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
+    return this.TaskRepository.getTasks(filterDto);
+  }
+  
 
   async getTaskById(id: number): Promise<Task> {
     const found = await this.TaskRepository.findOne(id);
